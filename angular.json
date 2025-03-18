@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "projects": { 
+    "sensor-monitor": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sensor-monitor", 
+            "outputPath": "dist/sensor-monitor",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -23,7 +23,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/firebase-messaging-sw.js" 
+              "src/firebase-messaging-sw.js"
             ],
             "styles": [
               "src/styles.css"
@@ -56,6 +56,21 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "sensor-monitor:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "sensor-monitor:build:production"
+            },
+            "development": {
+              "buildTarget": "sensor-monitor:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
         }
       }
     }

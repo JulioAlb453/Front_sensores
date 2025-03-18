@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire/compat';
+import { HttpClientModule } from '@angular/common/http';
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 
 import { environment } from './environments/environment';
@@ -24,7 +25,8 @@ import { CommonModule } from '@angular/common';
     Sensor3Module,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireMessagingModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
