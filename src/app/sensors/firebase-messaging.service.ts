@@ -11,6 +11,7 @@ import { environment } from '../environments/environment';
 })
 export class FirebaseMessagingService {
   currentMessage = new BehaviorSubject<any>(null);
+  backUrl = 'htpp://localhost:8080';
 
   constructor(
     private angularFireMessaging: AngularFireMessaging,
@@ -42,29 +43,20 @@ export class FirebaseMessagingService {
     );
   }
 
-
   subscribeToTopic(topic: string, token: string) {
-    const url =
-      'https://idd.googleapis.com/d/v1/' + token + 'rel/topic/' + topic;
-    const headers = {
-      Authorization: environment.firebaseConfig.apiKey,
-    };
+    const url = `${this.backUrl}/suscribe`;
+    const body = { token, topic };
+    return this.http.post(url, body);
+  }
+  
+  sendNotification(token: string, title: string, body: string) {
+    const url = `${this.backUrl}/send-notification`;
+    const payload = { token, title, body };
 
-    this.http.post(url, {}, { headers }).subscribe(
-      () => {
-        console.log('Subscribed to topic:', topic);
-      },
-      (error) => {
-        console.error('Error subscribing to topic:', error);
-      }
-    );
+    return this.http.post(url, payload);
   }
 
   listen() {
-    console.log('Listen function is running');
-    this.angularFireMessaging.messages.subscribe((message) => {
-      console.log('Message received in service:', message);
-      this.currentMessage.next(message);
-    });
+    
   }
 }
