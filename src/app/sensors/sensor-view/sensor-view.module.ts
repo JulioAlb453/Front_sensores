@@ -5,6 +5,10 @@ import { Sensor2DisplayComponent } from '../sensor2/sensor2-display/sensor2-disp
 import { Sensor3DisplayComponent } from '../sensor3/sensor3-display/sensor3-display.component';
 import { SensorViewComponent } from './sensor-view.component';
 
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+
 @NgModule({
   declarations: [
     SensorViewComponent,
@@ -12,6 +16,6 @@ import { SensorViewComponent } from './sensor-view.component';
     Sensor2DisplayComponent,
     Sensor3DisplayComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, MatIconModule, MatButtonModule, MatDividerModule],
 })
 export class SensorViewModule {}
