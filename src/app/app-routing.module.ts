@@ -2,7 +2,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SensorViewComponent } from './sensors/sensor-view/sensor-view.component';
-const routes: Routes = [{ path: '', component: SensorViewComponent }];
+import { SensorTemperatureComponent } from './sensors/sensor1/sensor-temperature/sensor-temperature.component';
+import { SensorNoiseComponent } from './sensors/sensor2/sensor-noise/sensor-noise.component';
+import { SensorLighComponent } from './sensors/sensor3/sensor-ligh/sensor-ligh.component';
+const routes: Routes = [
+  { path: '', component: SensorViewComponent },
+  { path: 'sensorTemperature', component: SensorTemperatureComponent },
+  { path: 'sensorNoise', component: SensorNoiseComponent },
+  { path: 'sensorLight', component: SensorLighComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
