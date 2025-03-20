@@ -1,0 +1,16 @@
+
+<div style="width: 300px; margin: auto;">
+    <apx-chart 
+      [series]="chartSeries"
+      [chart]="chartOptions.chart"
+      [plotOptions]="chartOptions.plotOptions"
+      [fill]="chartOptions.fill"
+      [tooltip]="chartOptions.tooltip"
+      [labels]="chartOptions.labels">
+    </apx-chart>
+  </div>
+  
+  <button (click)="generateRandomValue()">
+      Actualizar Valor
+    </button>
+    
