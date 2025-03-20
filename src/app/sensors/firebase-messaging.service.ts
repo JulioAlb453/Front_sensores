@@ -31,7 +31,7 @@ export class FirebaseMessagingService {
   requestPermission() {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
-        console.log('Token: ', token);
+        // console.log('Token: ', token);
         if (token) {
           this.subscribeToTopic(token, 'sensor_alert');
         }
@@ -43,12 +43,13 @@ export class FirebaseMessagingService {
     );
   }
 
-  subscribeToTopic(topic: string, token: string) {
-    const url = `${this.backUrl}/suscribe`;
+  subscribeToTopic(token: string, topic: string) {
+    const url = `${this.backUrl}/webhook`;
     const body = { token, topic };
+    console.log(body);
     return this.http.post(url, body);
   }
-  
+
   sendNotification(token: string, title: string, body: string) {
     const url = `${this.backUrl}/send-notification`;
     const payload = { token, title, body };
@@ -57,6 +58,9 @@ export class FirebaseMessagingService {
   }
 
   listen() {
-    
+    this.angularFireMessaging.messages.subscribe((message) => {
+      console.log('Mensaje recibido:', message);
+      this.currentMessage.next(message);
+    });
   }
 }
