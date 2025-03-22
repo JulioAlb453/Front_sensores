@@ -1,16 +1,26 @@
-
-<div style="width: 300px; margin: auto;">
-    <apx-chart 
-      [series]="chartSeries"
-      [chart]="chartOptions.chart"
-      [plotOptions]="chartOptions.plotOptions"
-      [fill]="chartOptions.fill"
-      [tooltip]="chartOptions.tooltip"
-      [labels]="chartOptions.labels">
-    </apx-chart>
+<div class="content-wrapper">
+  <div class="content">
+    <div class="contentChart">
+      <p class="contetChartTitle">Nivel de ruido actual</p>
+      <apx-chart
+        [series]="chartSeries"
+        [chart]="chartOptions.chart"
+        [plotOptions]="chartOptions.plotOptions"
+        [fill]="chartOptions.fill"
+        [tooltip]="chartOptions.tooltip"
+        [labels]="chartOptions.labels"
+      >
+      </apx-chart>
+    </div>
+    <div class="contentChartButton">
+      <button
+        mat-fab
+        extended
+        (click)="generateRandomValue()"
+        class="changeButton"
+      >
+        Actualizar Valor
+      </button>
+    </div>
   </div>
-  
-  <button (click)="generateRandomValue()">
-      Actualizar Valor
-    </button>
-    
+</div>

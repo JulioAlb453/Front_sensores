@@ -11,9 +11,11 @@ import { environment } from './environments/environment';
 import { SensorViewModule } from './sensors/sensor-view/sensor-view.module';
 import { CommonModule } from '@angular/common';
 
+
 @NgModule({
   declarations: [
     AppComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,7 @@ import { CommonModule } from '@angular/common';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireMessagingModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

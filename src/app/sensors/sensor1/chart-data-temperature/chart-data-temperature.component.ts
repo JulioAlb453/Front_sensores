@@ -31,7 +31,7 @@ export class ChartDataTemperatureComponent {
       },
       plotOptions: {
         radialBar: {
-          hollow: { size: "60%" },
+          hollow: { size: "60C*" },
           track: { background: "#E0E0E0" },
           dataLabels: {
             name: { show: true, fontSize: "16px" },
@@ -43,7 +43,7 @@ export class ChartDataTemperatureComponent {
         colors: ["#3498db"] 
       },
       tooltip: { enabled: true },
-      labels: ["Intensidad de Luz"]
+      labels: ["Temperatura del lugar"]
     };
   }
 

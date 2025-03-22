@@ -6,7 +6,8 @@ import { SensorTemperatureComponent } from './sensors/sensor1/sensor-temperature
 import { SensorNoiseComponent } from './sensors/sensor2/sensor-noise/sensor-noise.component';
 import { SensorLighComponent } from './sensors/sensor3/sensor-ligh/sensor-ligh.component';
 const routes: Routes = [
-  { path: '', component: SensorViewComponent },
+  {path: "", redirectTo: "home", pathMatch: 'full'},
+  { path: 'home', component: SensorViewComponent },
   { path: 'sensorTemperature', component: SensorTemperatureComponent },
   { path: 'sensorNoise', component: SensorNoiseComponent },
   { path: 'sensorLight', component: SensorLighComponent },
