@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseMessagingService } from '../../firebase-messaging.service';
-import { fakeAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'app-sensor3-display',

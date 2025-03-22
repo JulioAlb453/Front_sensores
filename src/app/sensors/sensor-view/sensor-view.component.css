@@ -1,0 +1,97 @@
+.content-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+section {
+  width: 100%;
+  padding: 16px;
+}
+
+.example-label {
+  display: block;
+  font-size: 2.5rem;
+  text-align: center;
+  position: relative;
+  height: 100vh;
+}
+
+.example-button-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 16px;
+}
+
+.example-button-container {
+  position: relative;
+  width: 95%;
+  padding: 17px;
+  height: 43.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.example-button-container:nth-child(1){
+  top: 0;
+  left: 0;
+}
+
+.example-button-container:nth-child(2){
+  top: 0;
+  right: 0;
+}
+
+.example-button-container:nth-child(3){
+  bottom: 0;
+  left: 0;
+}
+
+.example-button-container:nth-child(4){
+  bottom: 0;
+  right: 0;
+}
+.example-button-container:hover {
+  transform: translateY(-3px);
+}
+
+button[mat-fab],
+a[mat-fab] {
+  background-color: #d7cffe !important;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.15);
+
+  color: #24252a !important;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  width: 100%;
+
+  height: 100%;
+  border-radius: 12px;
+}
+
+button[mat-fab]:hover,
+a[mat-fab]:hover {
+  background-color: #fdfcfa !important;
+  color: #24252a !important;
+}
+
+@media (max-width: 600px) {
+  .example-button-container{
+    width: 90%;
+    height: 30vh;
+  }
+
+  .example-button-container:nth-child(2),
+  .example-button-container:nth-child(4){
+    right: 5%;
+  }
+  .example-button-container:nth-child(1),
+  .example-button-container:nth-child(3){
+    left: 5%;
+  }
+  .example-button-row {
+    grid-template-columns: 1fr;
+  }
+}
