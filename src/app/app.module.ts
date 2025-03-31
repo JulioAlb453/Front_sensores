@@ -12,6 +12,8 @@ import { SensorViewModule } from './sensors/sensor-view/sensor-view.module';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
+import { RegisteDashboardModule } from './admin/features/registe-dashboard/registe-dashboard.module';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     AngularFireMessagingModule,
     CommonModule,
     HttpClientModule,
-    NavbarComponent
+    NavbarComponent,
+    RegisteDashboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

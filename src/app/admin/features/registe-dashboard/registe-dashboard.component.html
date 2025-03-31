@@ -1,0 +1,65 @@
+<div class="dashboard-container">
+  <h2>Registro de Sensores</h2>
+  <p>Administra los sensores de la biblioteca</p>
+
+  <form class="register-form" (ngSubmit)="registerDevice()" #registerForm="ngForm">
+    <div class="form-group">
+      <label for="macAddress">Dirección MAC del ESP32</label>
+      <input
+        type="text"
+        id="macAddress"
+        name="macAddress"
+        [(ngModel)]="newSensor.macAddress"
+        placeholder="AA:BB:CC:DD:EE:FF"
+        required
+        pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"
+        class="form-input"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="location">Ubicación del Sensor</label>
+      <input
+        type="text"
+        id="location"
+        name="location"
+        [(ngModel)]="newSensor.location"
+        placeholder="Ej: Sala de servidores"
+        required
+        class="form-input"
+      />
+    </div>
+
+    <button type="submit" class="submit-button" [disabled]="isLoading || !registerForm.form.valid">
+      <span *ngIf="!isLoading">Registrar Sensor</span>
+      <span *ngIf="isLoading" class="loading-spinner"></span>
+    </button>
+  </form>
+
+  <div class="sensor-table">
+    <h3>Lista de Sensores Registrados</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>MAC</th>
+          <th>Ubicación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sensor of sensors">
+          <td>{{ sensor.macAddress }}</td>
+          <td>{{ sensor.location }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button class="finalize-button" (click)="finalizeRegistration()">
+    Finalizar Registro y Generar Folio
+  </button>
+
+  <div *ngIf="generatedFolio">
+    <h3>Folio Generado:</h3>
+    <p>{{ generatedFolio }}</p>
+  </div>
+</div>

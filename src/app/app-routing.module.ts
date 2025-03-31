@@ -5,9 +5,11 @@ import { SensorViewComponent } from './sensors/sensor-view/sensor-view.component
 import { SensorTemperatureComponent } from './sensors/sensor1/sensor-temperature/sensor-temperature.component';
 import { SensorNoiseComponent } from './sensors/sensor2/sensor-noise/sensor-noise.component';
 import { SensorLighComponent } from './sensors/sensor3/sensor-ligh/sensor-ligh.component';
+import { RegisteDashboardComponent } from './admin/features/registe-dashboard/registe-dashboard.component';
 const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: 'full'},
   { path: 'home', component: SensorViewComponent },
+  { path: 'dashboard', component: RegisteDashboardComponent },  
   { path: 'sensorTemperature', component: SensorTemperatureComponent },
   { path: 'sensorNoise', component: SensorNoiseComponent },
   { path: 'sensorLight', component: SensorLighComponent },
