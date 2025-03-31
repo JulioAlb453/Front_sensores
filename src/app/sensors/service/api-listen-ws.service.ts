@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+  import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, mergeMap, catchError, startWith } from 'rxjs/operators';
 import { WebsocketService } from './websocket.service';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

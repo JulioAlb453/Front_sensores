@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { Subject, Observable, throwError } from 'rxjs';
 import { catchError, tap, retryWhen, delay, takeUntil } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 
 @Injectable({
