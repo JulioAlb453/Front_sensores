@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
 import { RegisteDashboardModule } from './admin/features/registe-dashboard/registe-dashboard.module';
+import { LoginModule } from './LoginUser/login.module';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { RegisteDashboardModule } from './admin/features/registe-dashboard/regis
     HttpClientModule,
     NavbarComponent,
     RegisteDashboardModule,
+    LoginModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

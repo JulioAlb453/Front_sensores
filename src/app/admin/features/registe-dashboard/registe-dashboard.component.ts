@@ -35,23 +35,20 @@ export class RegisteDashboardComponent {
       this.isLoading = false;
     }, 1000);
   }
-
   finalizeRegistration(): void {
-    try {
-        this.generatedFolio = this.sensorService.finalizeRegistration();
-        this.sensors = []; 
-        alert('Registro finalizado. Folio generado: ' + this.generatedFolio);
-    } catch (error) {
-        if (error instanceof Error) {
-            alert(error.message);
-        } else {
-            alert('Ocurrió un error inesperado.');
-        }
+    const folio = this.sensorService.finalizeRegistration();
+  
+    if (folio) {
+      this.generatedFolio = folio;  
+      this.sensors = [];           
+      alert('Registro finalizado. Folio generado: ' + this.generatedFolio);
+    } else {
+      alert('No hay sensores registrados. No se puede finalizar el registro.');
     }
-}
-
-
-  private loadSensors() {
+  }
+  
+  private loadSensors(): void {
     this.sensors = this.sensorService.getSensors();
   }
+  
 }

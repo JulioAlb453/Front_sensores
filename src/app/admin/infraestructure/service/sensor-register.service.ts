@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { SensorRegister } from "../../model/sensor-register";
 import { SensorRepository } from "../repository/sensor-repository";
 import { AccountRegister } from '../../model/AccountRegister';
-import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -21,14 +20,33 @@ export class SensorRegisterService {
     return this.sensorRepository.getSavedSensors();
   }
 
-  finalizeRegistration(): string {
-    if (this.sensorRepository.getSavedSensors().length === 0) {
-        throw new Error('No hay sensores registrados para finalizar el registro.');
+  finalizeRegistration(): string | null {
+    const sensors = this.sensorRepository.getSavedSensors();
+
+    if (sensors.length === 0) {
+      console.warn('No hay sensores registrados para finalizar el registro.');
+      return null; 
     }
 
     const folio = 'FOLIO-' + Date.now();
+
+
+    localStorage.setItem('folio', folio);
+    console.log('Folio guardado en localStorage:', folio);
+
+
     this.sensorRepository.clearSensors(); 
+
     return folio;
-}
+  }
+
+  getFolioFromLocalStorage(): string | null {
+    return localStorage.getItem('folio');
+  }
+
+  clearFolioFromLocalStorage(): void {
+    localStorage.removeItem('folio');
+    console.log('Folio eliminado del localStorage');
+  }
 
 }
