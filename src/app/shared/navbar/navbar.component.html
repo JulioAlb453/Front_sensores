@@ -1,0 +1,33 @@
+<header class="header-content">
+  <mat-toolbar>
+    <div class="toolbar-content">
+      <div class="branding">
+        <span class="material-symbols-outlined"> mic_off </span>
+        <span class="app-name">Zero Noise</span>
+      </div>
+
+      <div class="nav-links">
+        <a
+          mat-button
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <div class="homeNav">
+            <span class="material-symbols-outlined" style="font-size: 1.8em">
+              home
+            </span>
+            <span class="nav-label">Inicio</span>
+          </div>
+        </a>
+
+        <a mat-button routerLink="/about" routerLinkActive="active">
+        <div class="moreInformation">
+            <span class="material-symbols-outlined"> help </span>
+            <span class="nav-label">Acerca de</span>
+        </div>
+    </a>
+      </div>
+    </div>
+  </mat-toolbar>
+</header>

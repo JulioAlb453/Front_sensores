@@ -7,9 +7,10 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 
-import { environment } from './environments/environment';
+import { environment } from '../environments/environment';
 import { SensorViewModule } from './sensors/sensor-view/sensor-view.module';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { CommonModule } from '@angular/common';
     AngularFireMessagingModule,
     CommonModule,
     HttpClientModule,
+    NavbarComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

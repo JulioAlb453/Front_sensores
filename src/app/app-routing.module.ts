@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'sensorTemperature', component: SensorTemperatureComponent },
   { path: 'sensorNoise', component: SensorNoiseComponent },
   { path: 'sensorLight', component: SensorLighComponent },
+
 ];
 
 @NgModule({
