@@ -49,4 +49,6 @@ export class SensorRegisterService {
     console.log('Folio eliminado del localStorage');
   }
 
+  
+
 }
