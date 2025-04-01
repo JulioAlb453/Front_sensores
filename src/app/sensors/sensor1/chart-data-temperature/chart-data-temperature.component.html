@@ -2,7 +2,7 @@
   <div class="current-card" [style.border-color]="getCurrentColor()">
     <div class="value-display">
       <span class="value">{{ currentValue.toFixed(1) }}</span>
-      <span class="unit">dBA</span>
+      <span class="unit">C*</span>
     </div>
     <div class="progress-bar">
       <div class="progress-fill" 
@@ -33,7 +33,7 @@
   <div class="thresholds-info">
     <div *ngFor="let t of thresholds" class="threshold-item">
       <span class="color-indicator" [style.background]="t.color"></span>
-      <span>{{ t.label }} (≥{{ t.value }}dBA)</span>
+      <span>{{ t.label }} (≥{{ t.value }}C*)</span>
     </div>
   </div>
 </div>
