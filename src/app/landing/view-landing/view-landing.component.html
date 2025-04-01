@@ -1,0 +1,46 @@
+<div class="landing-page">
+  <header class="hero-section">
+    <div class="hero-content">
+      <h1>Monitoreo Ambiental Inteligente</h1>
+      <p>
+        Tu sistema todo-en-uno para el control y monitoreo de temperatura,
+        humedad, calidad del aire y más.
+      </p>
+      <div class="cta-buttons">
+        <button routerLink="/register" class="cta-btn">Regístrate</button>
+        <button routerLink="/login" class="cta-btn">Iniciar Sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="features" *ngIf="features.length > 0">
+    <h2 class="section-title">Características del Sistema</h2>
+    <div class="feature-list">
+      <div *ngFor="let feature of features" class="feature-item">
+        <p>
+          {{
+            "assets/" +
+              feature.title.toLowerCase().split(" ").join("-") +
+              ".png"
+          }}
+        </p>
+        <img
+          [attr.src]="
+            'assets/' +
+            feature.title.toLowerCase().split(' ').join('-') +
+            '.png'
+          "
+          alt="{{ feature.title }}"
+          class="feature-icon"
+        />
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" *ngIf="abountInfo">
+    <h2 class="section-title">Sobre el Sistema</h2>
+    <p>{{ abountInfo }}</p>
+  </section>
+</div>

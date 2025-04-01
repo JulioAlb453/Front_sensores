@@ -14,6 +14,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 
 import { RegisteDashboardModule } from './admin/features/registe-dashboard/registe-dashboard.module';
 import { LoginModule } from './LoginUser/login.module';
+import { LandingModule } from './landing/landing.module';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { LoginModule } from './LoginUser/login.module';
     NavbarComponent,
     RegisteDashboardModule,
     LoginModule,
+    LandingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

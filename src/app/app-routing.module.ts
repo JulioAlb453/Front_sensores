@@ -8,12 +8,14 @@ import { SensorLighComponent } from './sensors/sensor3/sensor-ligh/sensor-ligh.c
 import { RegisteDashboardComponent } from './admin/features/registe-dashboard/registe-dashboard.component';
 import { RegisterZNComponent } from './LoginUser/register-zn/register-zn.component';
 import { LoginZNComponent } from './LoginUser/login-zn/login-zn.component';
+import { ViewLandingComponent } from './landing/view-landing/view-landing.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: 'full'},
+  {path: "home", component: ViewLandingComponent},
   { path: 'login', component: LoginZNComponent},  
   {path: "register", component: RegisterZNComponent},
-  { path: 'home', component: SensorViewComponent },
+  { path: 'sensorView', component: SensorViewComponent },
   { path: 'dashboard', component: RegisteDashboardComponent },  
   { path: 'sensorTemperature', component: SensorTemperatureComponent },
   { path: 'sensorNoise', component: SensorNoiseComponent },
