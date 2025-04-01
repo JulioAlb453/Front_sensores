@@ -16,6 +16,7 @@ import { RegisteDashboardModule } from './admin/features/registe-dashboard/regis
 import { LoginModule } from './LoginUser/login.module';
 import { LandingModule } from './landing/landing.module';
 import { Sensor3Module } from './sensors/sensor3/sensor3.module';
+import { Sensor4Module } from './sensors/sensor4/sensor4.module';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { Sensor3Module } from './sensors/sensor3/sensor3.module';
     NavbarComponent,
     RegisteDashboardModule,
     LoginModule,
+    Sensor4Module,
     Sensor3Module,
     LandingModule
   ],

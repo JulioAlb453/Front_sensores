@@ -1,0 +1,39 @@
+<div class="dashboard-container">
+    <div class="current-card" [style.border-color]="getCurrentColor()">
+      <div class="value-display">
+        <span class="value">{{ currentValue.toFixed(1) }}</span>
+        <span class="unit">ppm</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" 
+             [style.width.%]="getPercentage(currentValue)" 
+             [style.background]="getCurrentColor()"></div>
+      </div>
+      <div class="threshold-info">
+        Nivel: {{ getCurrentThreshold().label }}
+      </div>
+    </div>
+    
+    <div class="history-section">
+      <h3>Historial reciente</h3>
+      <div class="horizontal-bars-container">
+        <div *ngFor="let item of history; let i = index" class="bar-item">
+          <span class="bar-label">{{ i + 1 }}</span>
+          <div class="bar-wrapper">
+            <div class="bar-horizontal" 
+                 [style.width.%]="(item / maxLevel) * 100"
+                 [style.background]="getColorForValue(item)">
+              <span class="bar-value">{{ item }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="thresholds-info">
+      <div *ngFor="let t of thresholds" class="threshold-item">
+        <span class="color-indicator" [style.background]="t.color"></span>
+        <span>{{ t.label }} (≥{{ t.value }}ppm)</span>
+      </div>
+    </div>
+  </div>
