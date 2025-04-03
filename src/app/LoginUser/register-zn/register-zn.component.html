@@ -1,13 +1,19 @@
-<div class="auth-container">
-    <h2>Registro</h2>
-    <form (ngSubmit)="register()">
-      <input type="text" [(ngModel)]="folio" name="folio" placeholder="Folio" required />
-      <input type="text" [(ngModel)]="name" name="name" placeholder="Nombre" required />
-      <input type="email" [(ngModel)]="email" name="email" placeholder="Correo" required />
-      <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" required />
-      <button type="submit">Registrarse</button>
-      <a routerLink="/login">Iniciar Sesión</a>
-    </form>
-    <p *ngIf="errorMessage">{{ errorMessage }}</p>
+<div class="register-container">
+  <div [@slideIn]>
+    <div class="form-structor">
+      <div class="signup">
+        <h2 class="form-title" id="signup"><span>or</span>Registro</h2>
+        <div class="form-holder">
+          <input type="text" class="input" placeholder="Folio" [(ngModel)]="folio" name="folio" required />
+          <input type="text" class="input" placeholder="Nombre" [(ngModel)]="name" name="name" required />
+          <input type="email" class="input" placeholder="Correo" [(ngModel)]="email" name="email" required />
+          <input type="password" class="input" placeholder="Contraseña" [(ngModel)]="password" name="password" required />
+        </div>
+        <button type="submit" class="submit-btn" (click)="register()">Registrarse</button>
+        <a routerLink="/login" class="link">Iniciar Sesión</a>
+        <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+      </div>
+    </div>
   </div>
-  
+</div>
+
