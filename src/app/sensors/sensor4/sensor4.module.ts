@@ -7,11 +7,10 @@ import { SensorAirPurityComponent } from './sensor-air-purity/sensor-air-purity.
 
 @NgModule({
   declarations: [
-    SensorAirPurityLevelChartDataComponent,
     SensorAirPurityComponent
   ],
   imports: [
-    CommonModule
+    CommonModule, SensorAirPurityLevelChartDataComponent
   ]
 })
 export class Sensor4Module { }

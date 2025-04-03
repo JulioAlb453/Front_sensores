@@ -6,9 +6,9 @@ import { SensorLighComponent } from './sensor-ligh/sensor-ligh.component';
 @NgModule({
   declarations: [
     Sensor3DisplayComponent,
-    SensorLighChartDataComponent,
+    
     SensorLighComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, SensorLighChartDataComponent,],
 })
 export class Sensor3Module {}
