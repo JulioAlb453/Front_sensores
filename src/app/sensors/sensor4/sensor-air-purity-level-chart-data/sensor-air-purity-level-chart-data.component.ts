@@ -5,13 +5,13 @@ import { takeUntil } from 'rxjs/operators';
 import { ApiService } from '../../service/api-listen-ws.service';
 import { environment } from '../../../../environments/evironments';
 @Component({
-  selector: 'app-chart-data-noise',
+  selector: 'app-sensor-air-purity-level-chart-data',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './chart-data-noise.component.html',
-  styleUrls: ['./chart-data-noise.component.css']
+  templateUrl: './sensor-air-purity-level-chart-data.component.html',
+  styleUrls: ['./sensor-air-purity-level-chart-data.component.css']
 })
-export class ChartDataNoiseComponent implements OnInit, OnDestroy {
+export class SensorAirPurityLevelChartDataComponent implements OnInit, OnDestroy {
   currentValue: number = 0;
   history: number[] = [];
   maxLevel: number = 100;
@@ -27,8 +27,8 @@ export class ChartDataNoiseComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.apiService.getCombinedData(
-      environment.WSM_NOISE_URL,
-      environment.WS_NOISE_URL
+      environment.WSM_AIR_URL,
+      environment.WS_AIR_URL
     )
     .pipe(takeUntil(this.destroy$))
     .subscribe({
@@ -57,7 +57,7 @@ export class ChartDataNoiseComponent implements OnInit, OnDestroy {
     return this.thresholds.find(t => this.currentValue >= t.value) || this.thresholds[2];
   }
 
-  // Función para determinar el color basado en el valor
+  // Función para obtener el color según el valor
   getColorForValue(value: number): string {
     if (value >= 75) return '#FF4560';
     if (value >= 50) return '#F39C12';

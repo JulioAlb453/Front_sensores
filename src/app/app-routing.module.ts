@@ -9,7 +9,7 @@ import { RegisteDashboardComponent } from './admin/features/registe-dashboard/re
 import { RegisterZNComponent } from './LoginUser/register-zn/register-zn.component';
 import { LoginZNComponent } from './LoginUser/login-zn/login-zn.component';
 import { ViewLandingComponent } from './landing/view-landing/view-landing.component';
-
+import { SensorAirPurityComponent } from './sensors/sensor4/sensor-air-purity/sensor-air-purity.component';
 const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: 'full'},
   {path: "home", component: ViewLandingComponent},
@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'sensorTemperature', component: SensorTemperatureComponent },
   { path: 'sensorNoise', component: SensorNoiseComponent },
   { path: 'sensorLight', component: SensorLighComponent },
+  { path:'sensorAirPurity', component: SensorAirPurityComponent },
 
 ];
 

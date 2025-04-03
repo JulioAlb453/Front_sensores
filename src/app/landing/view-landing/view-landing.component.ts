@@ -8,7 +8,7 @@ import { LandingService } from '../landing-service.service';
   styleUrl: './view-landing.component.css',
 })
 export class ViewLandingComponent implements OnInit {
-  features = [
+  imgs = [
     {
       title: 'Sensorización in',
       description: 'Monitoreo en tiempo real de la temperatura.',
@@ -18,9 +18,9 @@ export class ViewLandingComponent implements OnInit {
   abountInfo: string = '';
 
   constructor(private landingService: LandingService) {
-    this.features = this.features.map((feature) => ({
-      ...feature,
-      image: `assets/${feature.title.toLowerCase().split(' ').join('-')}.png`,
+    this.imgs = this.imgs.map((imgs) => ({
+      ...imgs,
+      image: `assets/${imgs.title.toLowerCase().split(' ').join('-')}.png`,
     }));
   }
   ngOnInit(): void {
@@ -29,8 +29,8 @@ export class ViewLandingComponent implements OnInit {
   }
 
   loadFeatures(): void {
-    this.landingService.getFeatures().subscribe((features) => {
-      this.features = features;
+    this.landingService.getFeatures().subscribe((imgs) => {
+      this.imgs = imgs;
     });
   }
 

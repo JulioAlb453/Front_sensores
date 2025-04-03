@@ -9,8 +9,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
   declarations: [
     Sensor1DisplayComponent,
     SensorTemperatureComponent,
-    ChartDataTemperatureComponent,
+    
   ],
-  imports: [CommonModule, NgApexchartsModule],
+  imports: [CommonModule, NgApexchartsModule, ChartDataTemperatureComponent,],
 })
 export class Sensor1Module {}
