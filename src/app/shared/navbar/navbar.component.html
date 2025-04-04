@@ -22,11 +22,17 @@
         </a>
 
         <a mat-button routerLink="/about" routerLinkActive="active">
-        <div class="moreInformation">
+          <div class="moreInformation">
             <span class="material-symbols-outlined"> help </span>
             <span class="nav-label">Acerca de</span>
-        </div>
-    </a>
+          </div>
+        </a>
+      </div>
+
+      <div class="user-actions">
+        <button mat-button (click)="logout()" class="logout-btn">
+          Cerrar Sesión
+        </button>
       </div>
     </div>
   </mat-toolbar>

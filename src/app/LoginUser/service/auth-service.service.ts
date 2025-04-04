@@ -4,37 +4,69 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthService {
-  private validFolios: string[] = ['FOLIO-123456', 'FOLIO-789012'];
+  private adminEmail = 'admin@zeronoise.com';
+  private adminPassword = 'zeronoise04';
+  private adminFolio = 'FOLIO-123456789';
 
   validateFolio(folio: string): boolean {
-    return this.validFolios.includes(folio);
+    return folio === this.adminFolio || ['FOLIO-123456', 'FOLIO-789012'].includes(folio);
   }
 
-  registerUser(
-    folio: string,
-    name: string,
-    email: string,
-    password: string
-  ): boolean {
+  registerUser(folio: string, name: string, email: string, password: string): boolean {
     const storedFolio = localStorage.getItem('folio');
     if (storedFolio && storedFolio === folio) {
       console.log('Usuario registrado:', { name, email, password, folio });
-      // localStorage.removeItem('folio');
+      localStorage.setItem('email', email);
+      localStorage.setItem('password', password);
+      localStorage.setItem('folio', folio); // ← También guardamos el folio aquí
+      return true;
+    }
+    return false;
+  }
+
+  loginUser(email: string, password: string, folio: string): boolean {
+    if (email === this.adminEmail && password === this.adminPassword && folio === this.adminFolio) {
+      localStorage.setItem('email', email);
+      localStorage.setItem('password', password);
+      localStorage.setItem('folio', folio);
+      return true;
+    }
+
+    const storedFolio = localStorage.getItem('folio');
+    const storedEmail = localStorage.getItem('email');
+    const storedPassword = localStorage.getItem('password');
+
+    if (storedFolio && storedFolio === folio && storedEmail === email && storedPassword === password) {
       return true;
     }
 
     return false;
   }
 
-  loginUser(email: string, password: string, folio: string): boolean {
-    const storedFolio = localStorage.getItem('folio'); 
-    const storedEmail = localStorage.getItem('email'); 
-    const storedPassword = localStorage.getItem('password'); 
+  isAdminLoggedIn(): boolean {
+    const storedEmail = localStorage.getItem('email');
+    const storedPassword = localStorage.getItem('password');
+    const storedFolio = localStorage.getItem('folio');
 
-    if (storedFolio && storedFolio === folio && storedEmail === email && storedPassword === password) {
-      return true; 
-    }
+    return storedEmail === this.adminEmail &&
+           storedPassword === this.adminPassword &&
+           storedFolio === this.adminFolio;
+  }
 
-    return false; 
+  isUserLoggedIn(): boolean {
+    const storedEmail = localStorage.getItem('email');
+    const storedPassword = localStorage.getItem('password');
+    const storedFolio = localStorage.getItem('folio');
+  
+    // Si no es admin pero tiene datos válidos
+    return storedEmail !== this.adminEmail &&
+           storedEmail !== null &&
+           storedPassword !== null &&
+           storedFolio !== null;
+  }
+  
+
+  logout(): void {
+    console.log('Sesión cerrada, datos del usuario guardados.'); // ← NO se eliminan datos
   }
 }
