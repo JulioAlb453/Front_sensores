@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../service/auth-service.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 
@@ -26,11 +26,17 @@ export class LoginZNComponent {
   folio: string = '';
   errorMessage: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   login() {
     if (this.authService.loginUser(this.email, this.password, this.folio)) {
-      alert('Inicio de sesión exitoso.');
+      if (this.authService.isAdminLoggedIn()) {
+        this.router.navigate(['/dashboard']);
+      } else if (this.authService.isUserLoggedIn()) {
+        this.router.navigate(['/sensorView']);
+      } else {
+        alert('Inicio de sesión exitoso.');
+      }
     } else {
       this.errorMessage = 'Correo, contraseña o folio inválidos.';
     }

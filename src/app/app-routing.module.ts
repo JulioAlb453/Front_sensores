@@ -1,4 +1,3 @@
-// src/app/app-routing.module.ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SensorViewComponent } from './sensors/sensor-view/sensor-view.component';
@@ -10,18 +9,20 @@ import { RegisterZNComponent } from './LoginUser/register-zn/register-zn.compone
 import { LoginZNComponent } from './LoginUser/login-zn/login-zn.component';
 import { ViewLandingComponent } from './landing/view-landing/view-landing.component';
 import { SensorAirPurityComponent } from './sensors/sensor4/sensor-air-purity/sensor-air-purity.component';
-const routes: Routes = [
-  {path: "", redirectTo: "home", pathMatch: 'full'},
-  {path: "home", component: ViewLandingComponent},
-  { path: 'login', component: LoginZNComponent},  
-  {path: "register", component: RegisterZNComponent},
-  { path: 'sensorView', component: SensorViewComponent },
-  { path: 'dashboard', component: RegisteDashboardComponent },  
-  { path: 'sensorTemperature', component: SensorTemperatureComponent },
-  { path: 'sensorNoise', component: SensorNoiseComponent },
-  { path: 'sensorLight', component: SensorLighComponent },
-  { path:'sensorAirPurity', component: SensorAirPurityComponent },
+import { AdminGuard } from './guards/admin.guard';
+import { UserGuard } from './guards/user.guard';
 
+const routes: Routes = [
+  { path: "", redirectTo: "home", pathMatch: 'full' },
+  { path: "home", component: ViewLandingComponent },
+  { path: "login", component: LoginZNComponent },
+  { path: "register", component: RegisterZNComponent },
+  { path: "sensorView", component: SensorViewComponent, canActivate: [UserGuard] },
+  { path: "dashboard", component: RegisteDashboardComponent, canActivate: [AdminGuard] },
+  { path: "sensorTemperature", component: SensorTemperatureComponent, canActivate: [UserGuard] },
+  { path: "sensorNoise", component: SensorNoiseComponent, canActivate: [UserGuard] },
+  { path: "sensorLight", component: SensorLighComponent, canActivate: [UserGuard] },
+  { path: "sensorAirPurity", component: SensorAirPurityComponent, canActivate: [UserGuard] },
 ];
 
 @NgModule({
