@@ -1,72 +1,43 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { Subject, Observable, throwError } from 'rxjs';
-import { catchError, tap, retryWhen, delay, takeUntil } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
-
+import { catchError, retryWhen, delay, takeUntil } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebsocketService implements OnDestroy {
-  private socket$!: WebSocketSubject<any>;
-  private messagesSubject = new Subject<any>();
   private destroy$ = new Subject<void>();
   private reconnectInterval = 10000;
 
-  public messages$ = this.messagesSubject.asObservable();
-
-  constructor() {
-    this.connect();
-    this.handleIncomingMessage
-  }
-
-  private connect(): void {
-    this.socket$ = webSocket({
-      url: environment.WSURL,
+  // Este método recibe la URL del canal del sensor
+  getSensorMessages(wsUrl: string): Observable<any> {
+    const socket$: WebSocketSubject<any> = webSocket({
+      url: wsUrl,
       closeObserver: {
         next: () => {
-          console.log('WebSocket cerrado. Reconectando...');
-          this.reconnect();
+          console.log(`WebSocket cerrado para ${wsUrl}. Reconectando...`);
         }
       },
       openObserver: {
-        next: () => console.log('WebSocket conectado ✅')
+        next: () => console.log(`WebSocket conectado para ${wsUrl} ✅`)
       }
     });
 
-    this.socket$.pipe(
-      takeUntil(this.destroy$),
-      tap(msg => {
-        console.log('Mensaje recibido:', msg);
-        this.messagesSubject.next(msg);
-      }),
+    return socket$.pipe(
       retryWhen(errors => errors.pipe(
-        delay(this.reconnectInterval),
-        tap(() => console.log('Reintentando conexión...'))
+        delay(this.reconnectInterval)
       )),
       catchError(error => {
-        console.error('Error en WebSocket:', error);
-        return throwError(() => new Error('Fallo en WebSocket')); 
-      })
-    ).subscribe();
-  }
-  private handleIncomingMessage(msg: any): void {
-    console.log('Mensaje WebSocket (raw):', msg);
-    if (typeof msg === 'number') {
-      this.messagesSubject.next(msg); 
-    } else {
-      console.warn('Mensaje no numérico:', msg);
-    }
-  }
-
-  private reconnect(): void {
-    setTimeout(() => this.connect(), this.reconnectInterval);
+        console.error(`Error en WebSocket para ${wsUrl}:`, error);
+        return throwError(() => new Error('Fallo en WebSocket'));
+      }),
+      takeUntil(this.destroy$)
+    );
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-    this.socket$?.complete();
   }
 }

@@ -10,9 +10,9 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
-    ChartDataNoiseComponent,
+    
     SensorNoiseComponent,
   ],
-  imports: [CommonModule, NgApexchartsModule, MatIconModule],
+  imports: [CommonModule, NgApexchartsModule, MatIconModule, ChartDataNoiseComponent,],
 })
 export class Sensor2Module {}
