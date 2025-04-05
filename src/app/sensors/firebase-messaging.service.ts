@@ -4,8 +4,7 @@ import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import firebase from 'firebase/compat/app';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../environments/environment';
-
+import { environment } from '../../environments/evironments';
 @Injectable({
   providedIn: 'root',
 })

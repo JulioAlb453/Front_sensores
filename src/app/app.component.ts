@@ -12,6 +12,6 @@ export class AppComponent {
 
   constructor (private router: Router){}
   get noShowNav(): boolean {
-    return this.router.url !== '/home'
+    return this.router.url !== '/home' && this.router.url !== '/register' && this.router.url !== '/login'
   }
 }
