@@ -1,0 +1,62 @@
+/* alert.component.css */
+
+.alert-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    z-index: 9999;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .alert {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  .alert-info {
+    background-color: #007bff; /* Azul */
+  }
+  
+  .alert-warning {
+    background-color: #f39c12; /* Amarillo */
+  }
+  
+  .alert-error {
+    background-color: #e74c3c; /* Rojo */
+  }
+  
+  .alert-message {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .alert-close-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.3s ease;
+  }
+  
+  .alert-close-btn:hover {
+    transform: rotate(90deg);
+  }
+  
+  .alert.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  

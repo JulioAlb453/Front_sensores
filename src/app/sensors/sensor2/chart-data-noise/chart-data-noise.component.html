@@ -1,3 +1,10 @@
+<!-- Alerta -->
+<div *ngIf="currentAlert?.visible" class="alert-box" [ngClass]="currentAlert?.type">
+  <span>{{ currentAlert?.message }}</span>
+  <button (click)="onClose()">Cerrar</button>
+</div>
+
+<!-- Dashboard -->
 <div class="dashboard-container">
   <div class="current-card" [style.border-color]="getCurrentColor()">
     <div class="value-display">
@@ -13,7 +20,7 @@
       Nivel: {{ getCurrentThreshold().label }}
     </div>
   </div>
-  
+
   <div class="history-section">
     <h3>Historial reciente</h3>
     <div class="horizontal-bars-container">

@@ -1,9 +1,9 @@
-// src/app/features/sensor-th/infrastructure/sensor-th-api.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../../environments/evironments';
-import { TemperatureHumiditySensor } from '../domain/temperature-humidity.model';
+import { environment } from '../../../../../environments/environment';
+import { TemperatureHumiditySensorModel } from '../domain/temperature-humidity.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +12,7 @@ export class SensorThApiService {
 
   constructor(private http: HttpClient) {}
 
-  getSensorData(): Observable<TemperatureHumiditySensor> {
-    return this.http.get<TemperatureHumiditySensor>(`${this.baseUrl}/temperaturehumidity/data`);
+  getSensorData(): Observable<TemperatureHumiditySensorModel> {
+    return this.http.get<TemperatureHumiditySensorModel>(`${this.baseUrl}/temperaturehumidity/data`);
   }
 }

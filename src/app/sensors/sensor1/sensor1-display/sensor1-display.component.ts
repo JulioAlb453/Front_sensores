@@ -1,4 +1,3 @@
-// src/app/sensor1/sensor1-display/sensor1-display.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FirebaseMessagingService } from '../../firebase-messaging.service';
 

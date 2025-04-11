@@ -1,5 +1,4 @@
-// src/app/features/sensor-th/domain/sensor-th.model.ts
-export interface TemperatureHumiditySensor {
+export interface TemperatureHumiditySensorModel {
     id: number;
     sensor_id: string;
     temperatura: number;
@@ -7,7 +6,3 @@ export interface TemperatureHumiditySensor {
     timestamp: string;
   }
   
-  export interface SensorTHData {
-    current: TemperatureHumiditySensor;
-    history: TemperatureHumiditySensor[];
-  }

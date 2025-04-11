@@ -17,12 +17,12 @@ const routes: Routes = [
   { path: "home", component: ViewLandingComponent },
   { path: "login", component: LoginZNComponent },
   { path: "register", component: RegisterZNComponent },
-  { path: "sensorView", component: SensorViewComponent, canActivate: [UserGuard] },
+  { path: "sensorView", component: SensorViewComponent,  },
   { path: "dashboard", component: RegisteDashboardComponent, canActivate: [AdminGuard] },
-  { path: "sensorTemperature", component: SensorTemperatureComponent, canActivate: [UserGuard] },
-  { path: "sensorNoise", component: SensorNoiseComponent, canActivate: [UserGuard] },
-  { path: "sensorLight", component: SensorLighComponent, canActivate: [UserGuard] },
-  { path: "sensorAirPurity", component: SensorAirPurityComponent, canActivate: [UserGuard] },
+  { path: "sensorTemperature", component: SensorTemperatureComponent,  },
+  { path: "sensorNoise", component: SensorNoiseComponent,  },
+  { path: "sensorLight", component: SensorLighComponent,  },
+  { path: "sensorAirPurity", component: SensorAirPurityComponent,  },
 ];
 
 @NgModule({
