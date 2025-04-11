@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, mergeMap, catchError, startWith } from 'rxjs/operators';
 import { WebsocketService } from './websocket.service';
-import { environment } from '../../../environments/evironments';
+import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,8 +13,6 @@ export class ApiService {
     private wsService: WebsocketService
   ) {}
 
-  // sensorEndpoint es la URL para consultar el historial del sensor
-  // wsUrl es la URL para el canal WebSocket de ese sensor
   getCombinedData(sensorEndpoint: string, wsUrl: string): Observable<{ current: number, history: number[] }> {
     return this.http.get<{ messages: number[] }>(sensorEndpoint).pipe(
       catchError(() => of({ messages: [] })),

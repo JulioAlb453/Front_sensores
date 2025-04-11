@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
+  @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
@@ -18,7 +18,7 @@ export class AuthService {
       console.log('Usuario registrado:', { name, email, password, folio });
       localStorage.setItem('email', email);
       localStorage.setItem('password', password);
-      localStorage.setItem('folio', folio); // ← También guardamos el folio aquí
+      localStorage.setItem('folio', folio);
       return true;
     }
     return false;
@@ -58,7 +58,6 @@ export class AuthService {
     const storedPassword = localStorage.getItem('password');
     const storedFolio = localStorage.getItem('folio');
   
-    // Si no es admin pero tiene datos válidos
     return storedEmail !== this.adminEmail &&
            storedEmail !== null &&
            storedPassword !== null &&
@@ -67,6 +66,10 @@ export class AuthService {
   
 
   logout(): void {
-    console.log('Sesión cerrada, datos del usuario guardados.'); // ← NO se eliminan datos
+    localStorage.removeItem('authToken')
+    localStorage.removeItem('email')
+    localStorage.removeItem('folio')
+    localStorage.removeItem('password')
+    console.log('Sesión cerrada'); 
   }
 }

@@ -1,9 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Importa CommonModule
-import { Subject } from 'rxjs';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Subject, interval } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ApiService } from '../../service/api-listen-ws.service';
-import { environment } from '../../../../environments/evironments';
+import { AlertService } from '../../service/alert-service.service';
+import { environment } from '../../../../environments/environment';
+
 @Component({
   selector: 'app-chart-data-noise',
   standalone: true,
@@ -15,28 +17,72 @@ export class ChartDataNoiseComponent implements OnInit, OnDestroy {
   currentValue: number = 0;
   history: number[] = [];
   maxLevel: number = 100;
+
+  currentAlert: { type: string; message: string; visible: boolean } | null = null;
+  private lastAlertLevel: number | null = null;
   private destroy$ = new Subject<void>();
 
   thresholds = [
-    { value: 75, color: '#FF4560', label: 'Alto' },
-    { value: 50, color: '#F39C12', label: 'Medio' },
-    { value: 0,  color: '#4398DB', label: 'Normal' }
+    { value: 50, color: '#FF4560', label: 'Ruidoso' },
+    { value: 30, color: '#F39C12', label: 'Medio' },
+    { value: 10,  color: '#4398DB', label: 'Normal' }
   ];
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private alertService: AlertService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
-    this.apiService.getCombinedData(
-      environment.WSM_NOISE_URL,
-      environment.WS_NOISE_URL
-    )
-    .pipe(takeUntil(this.destroy$))
-    .subscribe({
-      next: data => {
-        this.currentValue = data.current;
-        this.history = data.history;
+    // Suscripción a cambios de alerta
+    this.alertService.currentAlert$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(alert => {
+        this.currentAlert = alert;
+        this.cdr.detectChanges();
+      });
+  
+    interval(5000)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        const simulatedNoiseLevel = Math.floor(Math.random() * 19) + 25;
+        this.currentValue = simulatedNoiseLevel;
+        this.history.push(simulatedNoiseLevel);
+  
+        if (this.history.length > 10) {
+          this.history.shift(); 
+        }
+  
+        this.checkAlerts();
+      });
+  }
+  
+
+  private checkAlerts(): void {
+    const currentThreshold = this.getCurrentThreshold();
+
+    if (this.lastAlertLevel !== currentThreshold.value) {
+      this.lastAlertLevel = currentThreshold.value;
+
+      if (currentThreshold.value === 75) {
+        this.alertService.showAlert(
+          'error',
+          '¡Nivel de ruido muy alto! Toma medidas inmediatas.',
+          { duration: 5000 }
+        );
+      } else if (currentThreshold.value === 50) {
+        this.alertService.showAlert(
+          'warning',
+          'Advertencia: Nivel de ruido medio. Mantente alerta.',
+          { duration: 5000 }
+        );
       }
-    });
+    }
+  }
+
+  onClose(): void {
+    this.alertService.hideAlert();
   }
 
   ngOnDestroy(): void {
@@ -57,10 +103,9 @@ export class ChartDataNoiseComponent implements OnInit, OnDestroy {
     return this.thresholds.find(t => this.currentValue >= t.value) || this.thresholds[2];
   }
 
-  // Función para determinar el color basado en el valor
   getColorForValue(value: number): string {
-    if (value >= 75) return '#FF4560';
-    if (value >= 50) return '#F39C12';
+    if (value >= 50) return '#FF4560';
+    if (value >= 30) return '#F39C12';
     return '#4398DB';
   }
-}
+} 

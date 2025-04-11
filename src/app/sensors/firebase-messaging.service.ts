@@ -1,10 +1,9 @@
-// src/app/firebase-messaging.service.ts
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import firebase from 'firebase/compat/app';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/evironments';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -30,7 +29,6 @@ export class FirebaseMessagingService {
   requestPermission() {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
-        // console.log('Token: ', token);
         if (token) {
           this.subscribeToTopic(token, 'sensor_alert');
         }

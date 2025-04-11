@@ -8,11 +8,15 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { NgApexchartsModule } from 'ng-apexcharts';
 
+import { AlertContainerComponent } from '../../shared/alert-container/alert-container.component';
 @NgModule({
-  declarations: [
-    
-    SensorNoiseComponent,
+  declarations: [SensorNoiseComponent],
+  imports: [
+    CommonModule,
+    NgApexchartsModule,
+    MatIconModule,
+    ChartDataNoiseComponent,
+    AlertContainerComponent,
   ],
-  imports: [CommonModule, NgApexchartsModule, MatIconModule, ChartDataNoiseComponent,],
 })
 export class Sensor2Module {}

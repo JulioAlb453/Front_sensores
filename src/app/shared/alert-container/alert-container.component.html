@@ -1,0 +1,5 @@
+<div *ngIf="currentAlert?.visible" class="alert-box" [ngClass]="currentAlert?.type">
+    <span>{{ currentAlert?.message }}</span>
+    <button (click)="onClose()">Cerrar</button>
+  </div>
+  

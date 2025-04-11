@@ -10,7 +10,6 @@ export class WebsocketService implements OnDestroy {
   private destroy$ = new Subject<void>();
   private reconnectInterval = 10000;
 
-  // Este método recibe la URL del canal del sensor
   getSensorMessages(wsUrl: string): Observable<any> {
     const socket$: WebSocketSubject<any> = webSocket({
       url: wsUrl,

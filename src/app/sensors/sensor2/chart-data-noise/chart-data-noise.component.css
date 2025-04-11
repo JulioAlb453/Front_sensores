@@ -133,3 +133,40 @@
   height: 15px;
   border-radius: 50%;
 }
+
+
+.alert-box {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.alert-box.info {
+  background-color: #3498db;
+}
+
+.alert-box.success {
+  background-color: #2ecc71;
+}
+
+.alert-box.warning {
+  background-color: #f39c12;
+}
+
+.alert-box.error {
+  background-color: #e74c3c;
+}
+
+.alert-box button {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
